@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block main_content %}
+    <section id="detailsPage">
+        <div class="wrapper">
+            <div class="profilePage">
+                {% if object.profile_picture %}
+                    <img src="{{ object.profile_picture }}" alt="img8" />
+                {% else %}
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="img8" />
+              {% endif %}
+            </div>
+
+            <div>
+                <br>
+                <!-- User First and Last Name IF Added -->
+            <div class="profile-details-page">
+                <h2>{{ object.user.email }}</h2>
+            </div>
+            <br>
+            
+            <div class="profile-details-infos">
+            
+                {% if object.first_name %}
+                    <p class="email">First name: {{ object.first_name }}</p>
+                {% endif %}
+                {% if object.last_name %}
+                    <p class="email">Last name: {{ object.last_name }}</p>
+                {% endif %}
+                {% if object.full_name %}
+                    <p class="email">Full name: {{ object.full_name }}</p>
+                {% endif %}
+                <p class="email">Email: {{ object.user.email }}</p>
+                {% if object.date_of_birth %}
+                    <p class="email">Date of birth: {{ object.date_of_birth }}</p>
+                {% endif %}
+            
+                {% if object.gender %}
+                    <p class="email">Gender: {{ object.gender }}</p>
+                {% else %}
+                    <p class="email">Gender not specified.</p>
+                {% endif %}
+            </div>
+            
+            </div>
+        
+            <div class="profileText">
+                {% if object.pk == request.user.pk %}
+                    <!-- Link to Edit Profile Page -->
+                    <div class="actionBtn">
+                        <a href="{% url 'delete-profile' pk=object.pk%}" class="remove">Delete</a>
+                        <a href="{% url 'edit-profile' pk=request.user.pk%}" class="remove">Edit</a>
+                    </div>
+                {% endif %}
+
+            
+{#                {% if object.age %}#}
+{#                    <h1>Age: {{ object.age }}</h1>#}
+{#                {% endif %}#}
+{#                <h1>Albums: {{ object.album_set.count }}</h1>#}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block home-page-text %}
+{% endblock %}

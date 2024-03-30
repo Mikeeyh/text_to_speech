@@ -1,0 +1,74 @@
+{% load static %}
+
+<header>
+    <nav>
+        <img src="{% static '/images/snake-4-xxl.png' %}" alt="voice" />
+
+        <!-- Link to Home Page -->
+        <a href="{% url 'index' %}"></a>
+
+        <!-- Link to Home Page -->
+        <a href="{% url 'index' %}">
+            <i>Home</i>
+        </a>
+
+        <ul>
+            {% if not request.user.is_authenticated %}
+            <li>
+                <!-- Link to Login Page -->
+                <a href="{% url 'signin user' %}">
+                    <i>Sign in</i>
+                </a>
+            </li>
+            <li>
+                <!-- Link to Register Page -->
+                <a href="{% url 'signup user' %}">
+                    <i>Sign up</i>
+                </a>
+            </li>
+                
+            <li>
+                <a href="{% url 'view_plans' %}">
+                    <i>Subscription Plans</i>
+                </a>
+            </li>
+                
+            {% else %}
+            <li>
+                <!-- Link to Audio List Page -->
+                <a href="{% url 'audiofile_create' %}">
+                    <i>Create audio</i>
+                </a>
+            </li>
+            <li>
+                <!-- Link to Audio List Page -->
+                <a href="{% url 'audiofile-list' %}">
+                    <i>Audio list</i>
+                </a>
+            </li>
+            <li>
+                <!-- Link to Profile Page -->
+                <a href="{% url 'profile-detail' pk=request.user.pk %}">
+                    <i>Profile</i>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'view_plans' %}">
+                    <i>Subscriptions</i>
+                </a>
+            </li>
+                <li>
+                    <a href="{% url 'add_money' %}">
+                        <i>Account Balance: ${{ request.user.profile.account_balance }}</i>
+                    </a>
+                </li>
+            <li>
+                <!-- Link to Sign Out -->
+                <a href="{% url 'signout user' %}">
+                    <i>Sign out</i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+    <div class="login-register-div">
+    <fieldset>
+        <legend>Voice</legend>
+        <div class="login-register-box">
+        <!-- Registration -->
+
+            <form action="{% url "audiofile_create" %}" method="post">  
+{#                <fieldset>#}
+{#                    <legend>Voice</legend>#}
+
+                    {{ form.as_p }} 
+
+                <!-- Button to Create Profile -->
+                <button type="submit" class="register">Generate</button>
+
+                    {% csrf_token %}  
+
+{#                </fieldset>#}
+            </form>
+
+        </div>
+        </fieldset>
+    </div>
+
+{% endblock %}
+
+{% block home-page-text %}
+{% endblock %}

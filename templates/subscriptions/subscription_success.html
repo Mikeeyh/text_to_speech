@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block main_content %}
+    <style>
+        .container {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            color: #753e7e;
+        }
+
+        .popup-notification {
+            position: fixed;
+            top: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8d7da;
+            border: 1px solid #7f007f;
+            color: #743e7d;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Subscription Success</h1>
+    </div>
+
+    {% if success_message %}
+        <script>
+            // Function to display messages as popup notifications
+            function displayMessage(message) {
+                // Create and append a popup notification div
+                const popupDiv = document.createElement('div');
+                popupDiv.className = 'popup-notification';
+                popupDiv.textContent = message;
+                document.body.appendChild(popupDiv);
+
+                // Remove the notification after a certain duration (e.g., 3 seconds)
+                setTimeout(function () {
+                    document.body.removeChild(popupDiv);
+                }, 3000); // Adjust the duration as needed (in milliseconds)
+            }
+            displayMessage("{{ success_message }}"); // Display each message as a popup notification
+
+            // Function to redirect to subscription details after a specified time
+            function redirectWithTimer(url, seconds) {
+                setTimeout(function () {
+                    window.location.href = url;
+                }, seconds * 500); // Convert seconds to milliseconds
+            }
+            redirectWithTimer("{% url 'subscription_detail' %}", 2); // Redirect after 10 seconds
+        </script>
+    {% endif %}
+
+{% endblock %}
+
+{% block home-page-text %}
+{% endblock %}
+

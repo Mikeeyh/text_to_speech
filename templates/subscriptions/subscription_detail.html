@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block main_content %}
+
+<style>
+    .container {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        text-align: center;
+        color: #753e7e;
+    }
+</style>
+
+<div class="container">
+    <h1>Subscription Details</h1>
+</div>
+    <div class="car-card">
+{% if subscriptions %}
+    {% for subscription in subscriptions %}
+        <div class="subscription-info">
+            <h2>{{ subscription.subscription_plan.name }}</h2>
+            <p>End Date: {{ subscription.end_date }}</p>
+            <!-- Add any other subscription details you want to display -->
+
+            <div class="actionBtn">
+            <a href="{% url 'edit_subscription' subscription.id %}" class="remove" >Edit</a>
+            <a href="{% url 'cancel_subscription' subscription.id %}" class="remove" >Cancel</a>
+            </div>
+            </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>No active subscriptions found.</p>
+{% endif %}
+
+{% endblock %}
+
+
+{% block home-page-text %}
+{% endblock %}

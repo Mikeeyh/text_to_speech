@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %}
+    <style>
+        .container {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+        }
+        
+    {#    .delete-button {#}
+    {#        width: 150px;#}
+    {#        height: 50px;#}
+    {#        cursor: pointer;#}
+    {#        border: none;#}
+    {#        border-radius: 10px;#}
+    {#        display: inline;#}
+    {#        align-items: center;#}
+    {#        justify-content: center;#}
+    {#        background-color: #1b2845;#}
+    {#        background-image: linear-gradient(315deg, #45a29e 0%, #0d324d 74%);#}
+    {#        background-size: 200% 100%;#}
+    {#        background-position: left;#}
+    {#        background-repeat: no-repeat;#}
+    {#        transition: 500ms;#}
+    {#        color: #da1a1a;#}
+    {#        font-family: "Lato", serif;#}
+    {#        font-size: 20px;#}
+    {#        margin-bottom: 5px;#}
+    {#        margin-top: 20px;#}
+    {#}#}
+
+    </style>
+{% if audio_files %}
+    <div class="container">
+        <h1>All Audio Files</h1>
+    </div>
+        <div class="container">
+        <p>Total Audio Files: {{ total_audio_files }}</p>
+    </div>
+
+{#<ul>#}
+{#  {% for audio_file in audio_files %}#}
+{#    #}
+{#      <p class="email"><strong>Title:</strong> {{ audio_file.title }}</p>#}
+{##}
+{#        <a href="{% url 'audiofile_detail' pk=audio_file.pk %}" class="remove" >#}
+{#            <button type="submit" class="register">Details</button>#}
+{#        </a>#}
+{#      #}
+{#  {% endfor %}#}
+{#</ul>#}
+    
+<div class="audio-grid">
+  {% for audio_file in audio_files %}
+    <div class="audio-file">
+    
+    <div class="profile-details-infos">
+      <p class="email"><strong>Title:</strong> {{ audio_file.title }}</p>
+    </div>
+        
+      <a href="{% url 'audiofile_detail' pk=audio_file.pk %}" class="remove">
+        <div class="form-group-button-audio-list">
+          <button type="submit" class="register">Details</button>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+    
+{% else %}
+    <div class="container">
+        <h1>No audio files found.</h1>
+    </div>
+{% endif %}
+
+{% endblock %}
+{% block home-page-text %}
+{% endblock %}

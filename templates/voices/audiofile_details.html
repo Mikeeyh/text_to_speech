@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+    <section id="detailsPage">
+    <div class="wrapper-audio-details">
+    <div class="profile-details-page">
+    <br>
+    <h2 class="email"><strong>Title:</strong> {{ audio_file.title }}</h2>
+    <br>
+    <h2 class="email"><strong>Created at:</strong> {{ audio_file.created_at }}</h2>
+    <br>
+    <h2 class="email"><strong>File format:</strong>Mp3</h2>
+    </div>
+    <div class="profileText">
+    
+        <div class="actionBtn">
+    <a href="{% url 'download' path=audio_file.audio_file.name %}" class="remove" download>Download</a>
+    <a href="{% url 'audiofile_delete' pk=audio_file.pk %}" class="remove">Delete</a>
+    <a href="{% url 'audiofile_update' pk=audio_file.pk %}" class="remove" >Edit title</a>
+    
+    </div>
+         <a class="edit-btn" href="javascript:history.back()">Go Back</a>
+    </div>
+
+    </div>
+    </section>
+
+{% endblock %}
+
+{% block home-page-text %}
+{% endblock %}

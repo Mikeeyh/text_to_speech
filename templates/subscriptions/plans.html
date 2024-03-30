@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main_content %}
+
+    <style>
+        .container {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            color: #753e7e;
+        }
+
+        .popup-notification {
+            position: fixed;
+            top: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8d7da;
+            border: 1px solid #7f007f;
+            color: #743e7d;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Subscription Plans</h1>
+    </div>
+
+    {% if messages %}
+        <script>
+            // Function to display messages as popup notifications
+            function displayMessage(message) {
+                // Create and append a popup notification div
+                const popupDiv = document.createElement('div');
+                popupDiv.className = 'popup-notification';
+                popupDiv.textContent = message;
+                document.body.appendChild(popupDiv);
+
+                // Remove the notification after a certain duration (e.g., 3 seconds)
+                setTimeout(function() {
+                    document.body.removeChild(popupDiv);
+                }, 3000); // Adjust the duration as needed (in milliseconds)
+            }
+        </script>
+        {% for message in messages %}
+            <script>
+                displayMessage("{{ message }}"); // Display each message as a popup notification
+            </script>
+        {% endfor %}
+    {% endif %}
+
+    {% if plans %}
+        <ul>
+            {% for plan in plans %}
+                <div class="plans-card">
+                    <div class="image-wrap">
+                    <!-- car image -->
+                    <img
+                        src="{% static '/images/snake-4-xxl.png' %}"
+                        alt="Rally"
+                    />
+                </div>
+
+                    <form id="subscribe-form-{{ plan.id }}" action="{% url 'subscribe' plan.id %}" method="post">
+                       <h2>{{ plan.name }}</h2>
+                        <p>Monthly price: ${{ plan.price }}</p>
+                        <label for="duration">Select Duration:</label>
+                        <select id="duration-{{ plan.id }}" name="duration" onchange="updateTotalPrice('{{ plan.id }}', '{{ plan.price }}')">
+                            <option value="1">1 Month</option>
+                            <option value="3">3 Months</option>
+                            <option value="6">6 Months</option>
+                            <option value="12">12 Months</option>
+                        </select>
+                        {% csrf_token %}
+                        <p>Total Price: $<span id="total-price-{{ plan.id }}">{{ plan.price }}</span></p>
+                        <button type="submit" class="register">Subscribe</button>
+                    </form>
+
+                </div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No subscription plans available.</p>
+    {% endif %}
+
+    <script>
+        function updateTotalPrice(planId, price) {
+            const duration = document.getElementById(`duration-${planId}`).value;
+            const totalPrice = duration * price;
+            document.getElementById(`total-price-${planId}`).textContent = totalPrice.toFixed(2);
+        }
+
+        // Update total price on page load for each plan
+        document.addEventListener('DOMContentLoaded', function() {
+            const plans = document.querySelectorAll('[id^="subscribe-form-"]');
+            plans.forEach(function(plan) {
+                const planId = plan.getAttribute('id').split('-')[2];
+                const price = document.getElementById(`total-price-${planId}`).textContent;
+                updateTotalPrice(planId, price);
+            });
+        });
+    </script>
+
+{% endblock %}
+
+
+{% block home-page-text %}
+{% endblock %}
+
+{#{% extends "base.html" %}#}
+{#{% load static %}#}
+
+{#{% block main_content %}#}
+{#    <style>#}
+{#        .container {#}
+{#            height: 100%;#}
+{#            margin: 0;#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#            align-items: center;#}
+{#        }#}
+{#        .container {#}
+{#            text-align: center;#}
+{#            color: #753e7e;#}
+{#        }#}
+{##}
+{#        .popup-notification {#}
+{#            position: fixed;#}
+{#            top: 20px;#}
+{#            left: 50%;#}
+{#            transform: translateX(-50%);#}
+{#            background-color: #f8d7da;#}
+{#            border: 1px solid #7f007f;#}
+{#            color: #743e7d;#}
+{#            padding: 10px 20px;#}
+{#            border-radius: 5px;#}
+{#            z-index: 9999;#}
+{#        }#}
+{#    </style>#}
+{#    <div class="container">#}
+{#        <h1>Subscription Plans</h1>#}
+{#    </div>#}
+{#    #}
+{#                        <a href="{% url 'subscription_detail' pk=subscription.pk%}">#}
+{#                        <i>Details</i>#}
+{#                        </a>#}
+{##}
+{#    {% if messages %}#}
+{#        <script>#}
+{#            // Function to display messages as popup notifications#}
+{#            function displayMessage(message) {#}
+{#                // Create and append a popup notification div#}
+{#                const popupDiv = document.createElement('div');#}
+{#                popupDiv.className = 'popup-notification';#}
+{#                popupDiv.textContent = message;#}
+{#                document.body.appendChild(popupDiv);#}
+{##}
+{#                // Remove the notification after a certain duration (e.g., 3 seconds)#}
+{#                setTimeout(function() {#}
+{#                    document.body.removeChild(popupDiv);#}
+{#                }, 3000); // Adjust the duration as needed (in milliseconds)#}
+{#            }#}
+{#        </script>#}
+{#        {% for message in messages %}#}
+{#            <script>#}
+{#                displayMessage("{{ message }}");#}
+{#            </script>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{##}
+{#    {% if plans %}#}
+{#        <ul>#}
+{#            {% for plan in plans %}#}
+{#                <div class="car-card">#}
+{#                    <div class="image-wrap">#}
+{#                        <!-- car image -->#}
+{#                        <img src="{% static '/images/snake-4-xxl.png' %}" alt="Rally" />#}
+{#                    </div>#}
+{#                    <form id="subscribe-form-{{ plan.id }}" action="{% url 'subscribe' %}" method="post">#}
+{#                        {% csrf_token %}#}
+{#                        <input type="hidden" name="subscription_plan" value="{{ plan.id }}">#}
+{#                        <label for="duration">Select Duration:</label>#}
+{#                        <select id="duration-{{ plan.id }}" name="duration" onchange="updateTotalPrice('{{ plan.id }}', '{{ plan.price }}')">#}
+{#                            <option value="1">1 Month</option>#}
+{#                            <option value="3">3 Months</option>#}
+{#                            <option value="6">6 Months</option>#}
+{#                            <option value="12">12 Months</option>#}
+{#                        </select>#}
+{#                        <p>Total Price: $<span id="total-price-{{ plan.id }}">{{ plan.price }}</span></p>#}
+{#                        <button type="submit" class="register">Subscribe</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% else %}#}
+{#        <p>No subscription plans available.</p>#}
+{#    {% endif %}#}
+{##}
+{#    <script>#}
+{#        function updateTotalPrice(planId, price) {#}
+{#            const duration = document.getElementById(`duration-${planId}`).value;#}
+{#            const totalPrice = duration * price;#}
+{#            document.getElementById(`total-price-${planId}`).textContent = totalPrice.toFixed(2);#}
+{#        }#}
+{##}
+{#        document.addEventListener('DOMContentLoaded', function() {#}
+{#            const plans = document.querySelectorAll('[id^="subscribe-form-"]');#}
+{#            plans.forEach(function(plan) {#}
+{#                const planId = plan.getAttribute('id').split('-')[2];#}
+{#                const price = document.getElementById(`total-price-${planId}`).textContent;#}
+{#                updateTotalPrice(planId, price);#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+{#{% endblock %}#}
+{##}
+{#{% block home-page-text %}#}
+{#{% endblock %}#}

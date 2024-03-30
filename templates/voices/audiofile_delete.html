@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+    
+<div class="wrapper-audio-details">
+        <br>
+        <br>
+        <div class="edit-profile-details">
+            <h2>Are you sure you want to delete your audio file?</h2>
+        </div>
+        <br>
+    <form action="{% url 'audiofile_delete' pk=object.pk %}" method="post" style="display: inline;">
+        
+        <div class="form-group-button-audio-edit">
+        <button type="submit" class="register" >Delete</button>
+        </div>
+        <br>
+        <div class="profileText">
+             <a class="edit-btn" href="javascript:history.back()">Go Back</a>
+        </div>
+        
+        {% csrf_token %}
+    </form>
+</div>
+    
+{% endblock %}
+
+{% block home-page-text %}
+{% endblock %}

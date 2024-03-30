@@ -30,6 +30,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "text_to_speech.web.apps.WebConfig",
+    "text_to_speech.accounts.apps.AccountsConfig",
+    "text_to_speech.profiles.apps.ProfilesConfig",
+    "text_to_speech.voices.apps.VoicesConfig",
+    "text_to_speech.subscriptions.apps.SubscriptionsConfig",
 ]
 
 MIDDLEWARE = [

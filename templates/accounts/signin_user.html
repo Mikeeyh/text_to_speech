@@ -1,0 +1,74 @@
+{#{% extends "base.html" %}#}
+{##}
+{#{% load static %}#}
+{##}
+{#{% block main_content %}#}
+{##}
+{#<div class="login-register-div"> {# added #}
+{#    #}
+{#    <div class="container-inline">#}
+{#    <div class="login-register-box">#}
+{#        <!-- Login-->#}
+{#            <form action="{% url 'signin user' %}?next={{ next }}" method="post">#}
+{#                <fieldset>#}
+{#                    <legend>Login</legend>#}
+{#                    #}
+{#                        {{ form.as_p }}#}
+{#    #}
+{#                        <button type="submit" class="delete">Login</button>#}
+{#                    #}
+{#                        {% csrf_token %}#}
+{#                </fieldset>#}
+{#            </form>#}
+{#      </div>#}
+{#    <div class="second-option">#}
+{#        <!-- Link to Register Page-->#}
+{#        <p style="color: white;">Don't have an account? <a href="{% url 'signup user' %}">Register</a></p>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{#    #}
+{#{% endblock %}#}
+{##}
+{#{% block home-page-text %}#}
+{#{% endblock %}#}
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load filters %}
+
+{% block main_content %}
+    <div class="login-register-div">
+    <fieldset>
+        <legend>Login</legend>
+        <div class="login-register-box">
+            
+            <!-- Start Login Form-->
+            <form action="{% url 'signin user' %}?next={{ next }}" method="post">
+                <p>
+                    {{ form.username|placeholder:"Email" }}
+                </p>
+                <p>
+                    {{ form.password|placeholder:"Password" }}
+                </p>
+
+                <!-- Login Button-->
+                <button type="submit" class="delete">Log in</button>
+                
+                {% csrf_token %}
+            </form>
+            <!-- End Login Form -->
+            <div class="login-register-box">
+            
+            <!-- Link to Register Page-->
+            <p>Don't have an account? <a href="{% url 'signup user' %}">Register</a></p>
+            </div>
+        </div>
+        </fieldset>
+    </div>
+{% endblock %}
+
+{% block home-page-text %}
+{% endblock %}

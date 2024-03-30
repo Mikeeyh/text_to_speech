@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block main_content %}
+    
+<div class="wrapper-audio-details">
+        <br>
+        <br>
+        <div class="edit-profile-details">
+            <h2>Are you sure you want to delete your profile?</h2>
+        </div>
+        <br>
+    <form action="{% url 'delete-profile' pk=request.user.pk %}" method="post" style="display: inline;">
+        
+        <div class="form-group-button-audio-edit">
+        <button type="submit" class="register" >Delete</button>
+        </div>
+        <br>
+        <div class="profileText">
+             <a class="edit-btn" href="javascript:history.back()">Go Back</a>
+        </div>
+        
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}
+
+{% block home-page-text %}
+{% endblock %}
+
+{#{% extends "base.html" %}#}
+{#{% block main_content %}#}
+{##}
+{#<div class="profileText">#}
+{#    <h1>Are you sure you want to delete your profile?</h1>#}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{#        <div class="sure-buttons">#}
+{#            <!-- Yes (Delete Profile) Button -->#}
+{#            <div class="actionBtn">#}
+{#                <button type="submit" class="delete">Yes</button>#}
+{#            </div>#}
+{#            <!-- Go Back Button -->#}
+{#            <a href="javascript:history.back()">Go Back</a>#}
+{#        </div>#}
+{#    </form>#}
+{#</div>#}
+{##}
+{#{% endblock %}#}
+{##}
+{#{% block home-page-text %}#}
+{#{% endblock %}#}

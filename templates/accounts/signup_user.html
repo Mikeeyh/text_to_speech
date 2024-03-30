@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load filters %}
+
+{% block main_content %}
+    <div class="login-register-div">
+    <fieldset>
+                    <legend>Register</legend>
+        <div class="login-register-box">
+
+            <!-- Start Register Form -->
+            <form action="{% url 'signup user' %}" method="post">
+                <p>
+                    {{ form.email|placeholder:"Email" }}
+                </p>
+                <p>
+                    {{ form.password1|placeholder:"Password" }}
+                </p>
+
+                <p>
+                    {{ form.password2|placeholder:"Confirm password" }}
+                </p>
+
+                <button type="submit" class="delete" >Register</button>
+                {% csrf_token %}
+            </form>
+        <!-- End Register Form -->
+
+        </div>
+        <div class="login-register-box">
+            <!-- Link to Login Page -->
+            <p>Have an account? <a href="{% url 'signin user' %}">Log in</a></p>
+        </div>
+        </fieldset>
+    </div>
+
+{% endblock %}
+
+{% block home-page-text %}
+{% endblock %}

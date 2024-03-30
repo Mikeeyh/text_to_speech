@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block main_content %}
+
+<style>
+    .container {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        text-align: center;
+        color: #753e7e;
+    }
+</style>
+    
+<div class="container">
+    <h1>Subscription Details</h1>
+</div>
+    <div class="car-card">
+<form method="post" action="{% url 'edit_subscription' subscription.id %}">
+    {% csrf_token %}
+    <h1>Subscription Details</h1>
+    <!-- Include form fields for editing subscription details here -->
+    <!-- For example, you can include fields to select a new subscription plan and duration -->
+    <label for="plan">Select Plan:</label>
+    <select name="plan" id="plan">
+        <!-- Populate options dynamically with available subscription plans -->
+        {% for plan in plans %}
+        <option value="{{ plan.id }}">{{ plan.name }}</option>
+        {% endfor %}
+    </select>
+    <label for="duration">Select Duration (months):</label>
+    <input type="number" name="duration" id="duration" min="1" value="1">
+    <button type="submit" class="register">Update Subscription</button>
+</form>
+
+    </div>
+{% endblock %}
+
+{% block home-page-text %}
+{% endblock %}
