@@ -122,7 +122,6 @@ class AudioFileCreateView(auth_mixin.LoginRequiredMixin, views.CreateView):
             return super().form_invalid(form)
 
     def has_subscription(self):
-        # Check if the user has an active subscription
         user = self.request.user
         active_subscriptions = UserSubscription.objects.filter(user=user, end_date__gt=timezone.now()).exists()
         return active_subscriptions
@@ -140,7 +139,7 @@ class AudioFileListView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views
     template_name = 'voices/audiofile_list.html'
     context_object_name = 'audio_files'
 
-    def get_queryset(self): # added
+    def get_queryset(self):  # added
         return AudioFile.objects.filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
@@ -152,8 +151,8 @@ class AudioFileListView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views
 class AudioFileUpdateView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.UpdateView):
     model = AudioFile
     fields = ['title']
-    template_name = 'voices/audiofile_edit.html'  # Change this to your desired template name
-    # success_url = reverse_lazy('audiofile-list')  # Change this to your actual URL name for audio file list view
+    template_name = 'voices/audiofile_edit.html'
+    # success_url = reverse_lazy('audiofile-list')
 
     def get_success_url(self):
         return reverse("audiofile_detail", kwargs={"pk": self.object.pk})

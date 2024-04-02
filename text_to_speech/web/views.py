@@ -51,7 +51,7 @@ def add_money(request):
                 return redirect('add_money')
 
             user_profile = Profile.objects.get(user=request.user)
-            user_profile.account_balance += amount  # Adding a Decimal object to another Decimal object
+            user_profile.account_balance += amount
             user_profile.save()
 
             messages.success(request, f"Successfully added {amount} to your account balance.")
