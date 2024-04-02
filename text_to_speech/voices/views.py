@@ -57,11 +57,9 @@ from django.urls import reverse_lazy
 
 import requests
 
-
-# Define constants for the script
 CHUNK_SIZE = 1024  # Size of chunks to read/write at a time
-XI_API_KEY = "2313a1fbc5eebdb4ec07393226cf81be"  # Your API key for authentication
-VOICE_ID = "pNInz6obpgDQGcFmaJgB"  # ID of the voice model to use
+XI_API_KEY = "2313a1fbc5eebdb4ec07393226cf81be"  # API key
+VOICE_ID = "pNInz6obpgDQGcFmaJgB"  # ID VOICE
 
 
 class AudioFileCreateView(auth_mixin.LoginRequiredMixin, views.CreateView):
@@ -69,11 +67,10 @@ class AudioFileCreateView(auth_mixin.LoginRequiredMixin, views.CreateView):
     form_class = AudioFileForm
     template_name = 'voices/audiofile_create.html'
     success_url = reverse_lazy('audiofile-list')
-    context_object_name = 'audio_files'  # Define the context object name
+    context_object_name = 'audio_files'
 
     def form_valid(self, form):
         if not self.has_subscription():
-            # If the user does not have a subscription, redirect to the plans page
             messages.warning(self.request, "Please subscribe to a plan to create audio files.")
             return redirect('view_plans')
 
@@ -89,7 +86,6 @@ class AudioFileCreateView(auth_mixin.LoginRequiredMixin, views.CreateView):
             "xi-api-key": XI_API_KEY
         }
 
-        # Set up the data payload for the API request, including the text and voice settings
         data = {
             "text": text,
             "model_id": "eleven_multilingual_v2",
