@@ -7,7 +7,14 @@
         <legend>Voice</legend>
         <div class="login-register-box">
         <!-- Registration -->
-
+            {# Without JS #}
+{#            {% if messages %}#}
+{#              <ul class="messages">#}
+{#                {% for message in messages %}#}
+{#                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#                {% endfor %}#}
+{#              </ul>#}
+{#            {% endif %}#}
             <form action="{% url "audiofile_create" %}" method="post">  
 {#                <fieldset>#}
 {#                    <legend>Voice</legend>#}
