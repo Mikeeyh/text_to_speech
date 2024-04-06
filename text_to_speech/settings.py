@@ -157,3 +157,14 @@ LOGGING = {
         }
     }
 }
+
+# Server name - demo-speechify-server
+# Engine - PostgreSQL - Flexible Server
+# Compute tier and size - Burstable Standard_B1ms
+# Database name - speechify_db
+# Region - Germany West Central
+# Username - zdspvvjgmx
+# Password - rEYDKcYr2Ss$VdY$
+
+STRIPE_PUBLIC_KEY = 'pk_test_51P2gLFIW3JPFeSCL2euoqRmgOL4EqIqrIYukcK3fjLjbiD92YosLDx3pYtIh0t02vWYFgpDR7Un61QCUs1CN1AyL00VhrDNdk2'
+STRIPE_SECRET_KEY = 'sk_test_51P2gLFIW3JPFeSCLJ7RgY1swzPJQFF8jWk8eB1UQRFJTG9ogsFLcGO8ekaxTeF5R0OMKPkp76JoEKUUmPfPm0STG001dQ8mn1T'

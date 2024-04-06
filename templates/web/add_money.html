@@ -15,42 +15,114 @@
         color: #753e7e;
     }
 </style>
-{#    {% if messages %}#}
-{#        <script>#}
-{#            // Function to display messages as popup notifications#}
-{#            function displayMessage(message) {#}
-{#                // Create and append a popup notification div#}
-{#                const popupDiv = document.createElement('div');#}
-{#                popupDiv.className = 'popup-notification';#}
-{#                popupDiv.textContent = message;#}
-{#                document.body.appendChild(popupDiv);#}
+
+{#    <div class="container">#}
 {##}
-{#                // Remove the notification after a certain duration (e.g., 3 seconds)#}
-{#                setTimeout(function() {#}
-{#                    document.body.removeChild(popupDiv);#}
-{#                }, 3000); // Adjust the duration as needed (in milliseconds)#}
-{#            }#}
-{#        </script>#}
-{#        {% for message in messages %}#}
-{#            <script>#}
-{#                displayMessage("{{ message }}"); // Display each message as a popup notification#}
-{#            </script>#}
-{#        {% endfor %}#}
-{#    {% endif %}#}
-    <div class="container">
+{#      <h1>Add Money to Account Balance</h1>#}
+{#    </div>#}
+{#<div class="car-card">#}
+{#  <form method="post">#}
+{#    {% csrf_token %}#}
+{#    <label for="amount">Amount to Add:</label>#}
+{#    <input type="number" id="amount" name="amount" step="0.01" min="0" required>#}
+{#    <button type="submit">Add Money</button>#}
+{#  </form>#}
+{##}
+{#    </div>#}
+{##}
+{#{% endblock %}#}
+{##}
+{#{% block home-page-text %}#}
+{#{% endblock %}#}
 
-      <h1>Add Money to Account Balance</h1>
-    </div>
-<div class="car-card">
-  <form method="post">
-    {% csrf_token %}
-    <label for="amount">Amount to Add:</label>
-    <input type="number" id="amount" name="amount" step="0.01" min="0" required>
-    <button type="submit">Add Money</button>
-  </form>
+<script src="https://js.stripe.com/v3/"></script>
 
-    </div>
+<div class="container">
+    <h1>Payment</h1>
+        </div>
+    <div class="car-card">
+    <form id="payment-form">
+        <label for="card-number">Card Number:</label>
+        <div id="card-number"></div>
 
+        <label for="card-expiry">Expiration Date:</label>
+        <div id="card-expiry"></div>
+
+        <label for="card-cvc">CVC:</label>
+        <div id="card-cvc"></div>
+
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" required>
+        {% csrf_token %}
+        <div class="actionBtn">
+        <button type="submit" class="delete">Submit Payment</button>
+        </div>
+        <a href="{% url 'account-balance' pk=request.user.pk %}" class="remove" >Go back</a>
+    </form>
+
+</div>
+<script>
+    var stripe = Stripe('pk_test_51P2gLFIW3JPFeSCL2euoqRmgOL4EqIqrIYukcK3fjLjbiD92YosLDx3pYtIh0t02vWYFgpDR7Un61QCUs1CN1AyL00VhrDNdk2');
+    var elements = stripe.elements();
+
+    var style = {
+        base: {
+            fontSize: '16px',
+            fontFamily: 'Arial, sans-serif',
+            color: '#32325d',
+        },
+    };
+
+    var cardNumber = elements.create('cardNumber', {style: style});
+    cardNumber.mount('#card-number');
+
+    var cardExpiry = elements.create('cardExpiry', {style: style});
+    cardExpiry.mount('#card-expiry');
+
+    var cardCvc = elements.create('cardCvc', {style: style});
+    cardCvc.mount('#card-cvc');
+
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    var amount = document.getElementById('amount').value;
+    stripe.createToken(cardNumber).then(function(result) {
+        if (result.error) {
+           
+            console.error(result.error.message);
+        } else {
+
+            var token = result.token;
+            var formData = new FormData();
+            formData.append('stripeToken', token.id);
+            formData.append('amount', amount);
+            
+            var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+            
+            var headers = new Headers();
+            headers.append("X-CSRFToken", csrfToken);
+            
+            fetch('/add-money/', {
+                method: 'POST',
+                body: formData,
+                headers: headers 
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Payment successful
+                    alert('Payment successful!');
+                    const userPk = "{{ request.user.pk }}"
+                    window.location.href = `/profile/${userPk}/balance/`;
+                } else {
+                    // Payment failed
+                    alert('Payment failed. Please try again.');
+                }
+            });
+        }
+    });
+});
+</script>
+    
 {% endblock %}
 
 {% block home-page-text %}

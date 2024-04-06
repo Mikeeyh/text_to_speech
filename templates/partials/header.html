@@ -58,7 +58,7 @@
                 </a>
             </li>
                 <li>
-                    <a href="{% url 'add_money' %}">
+                    <a href="{% url 'account-balance' pk=request.user.pk%}">
                         <i>Account Balance: ${{ request.user.profile.account_balance }}</i>
                     </a>
                 </li>

@@ -68,7 +68,7 @@ class Profile(IHaveUser, models.Model):
     )
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
     @property
     def full_name(self):

@@ -5,4 +5,4 @@ from text_to_speech.voices.models import AudioFile
 
 @admin.register(AudioFile)
 class AudioFileAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('pk', 'title', 'text', 'created_at')

@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 
-from text_to_speech.core.view_mixins import OwnerRequiredMixin
+from text_to_speech.core.owner_required_view_mixins import OwnerRequiredMixin
 from text_to_speech.profiles.forms import ProfileForm
 from text_to_speech.profiles.models import Profile
 from django.views import generic as views
@@ -98,3 +99,12 @@ class ProfileDeleteView(views.DeleteView):
     template_name = "profiles/profile-delete.html"
     success_url = reverse_lazy('index')
 
+
+def account_balance_view(request, pk):
+    user_profile = Profile.objects.get(pk=pk, user=request.user)
+
+    context = {
+        'account_balance': user_profile.account_balance,
+
+    }
+    return render(request, 'profiles/profile-account-balance.html', context)

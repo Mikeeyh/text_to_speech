@@ -10,14 +10,16 @@
 
 from django.urls import path, include
 
-from text_to_speech.profiles.views import ProfileDetailsView, ProfileUpdateView, ProfileDeleteView
+from text_to_speech.profiles.views import ProfileDetailsView, ProfileUpdateView, ProfileDeleteView, account_balance_view
 
 urlpatterns = (
     path(
-        "profile/<int:pk>/", include([
+        "<int:pk>/", include([
             path('details/', ProfileDetailsView.as_view(), name='profile-detail'),
             path("delete/", ProfileDeleteView.as_view(), name="delete-profile"),
             path("edit/", ProfileUpdateView.as_view(), name="edit-profile"),
+
+            path('balance/', account_balance_view, name='account-balance'),
         ])
     ),
 )

@@ -13,11 +13,15 @@ UserModel = get_user_model()
 class AudioFile(models.Model):
     text = models.TextField(
         max_length=255,
+        null=False,
+        blank=False,
     )
 
     title = models.CharField(
         max_length=100,
         unique=True,
+        null=False,
+        blank=False,
     )
 
     audio_file = models.FileField(

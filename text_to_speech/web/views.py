@@ -1,5 +1,11 @@
-from django.shortcuts import render
+import stripe
 from text_to_speech.profiles.models import Profile
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from decimal import Decimal
+import os
+from django.conf import settings
+from django.http import HttpResponse, Http404
 
 
 def index(request):
@@ -15,12 +21,6 @@ def index(request):
     return render(request, template_name, context)
 
 
-# # views.py
-import os
-from django.conf import settings
-from django.http import HttpResponse, Http404
-
-
 def download(request, path):
     file_path = os.path.join(settings.MEDIA_ROOT, path)
     if os.path.exists(file_path):
@@ -31,9 +31,33 @@ def download(request, path):
     raise Http404
 
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from decimal import Decimal
+# def add_money(request):
+#     if request.method == 'POST':
+#         amount = request.POST.get('amount')
+#         if amount:
+#             try:
+#                 amount = Decimal(amount)
+#             except ValueError:
+#                 messages.error(request, "Invalid amount. Please enter a valid number.")
+#                 return redirect('add_money')
+#
+#             if amount <= 0:
+#                 messages.error(request, "Amount must be greater than zero.")
+#                 return redirect('add_money')
+#
+#             user_profile = Profile.objects.get(user=request.user)
+#             user_profile.account_balance += amount
+#             user_profile.save()
+#
+#             messages.success(request, f"Successfully added {amount} to your account balance.")
+#             return redirect('view_plans')
+#         else:
+#             messages.error(request, "Amount cannot be empty.")
+#             return redirect('add_money')
+#     else:
+#         return render(request, 'web/add_money.html')
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def add_money(request):
@@ -46,7 +70,7 @@ def add_money(request):
                 messages.error(request, "Invalid amount. Please enter a valid number.")
                 return redirect('add_money')
 
-            if amount <= 0:
+            if amount <= Decimal('0'):
                 messages.error(request, "Amount must be greater than zero.")
                 return redirect('add_money')
 
@@ -54,7 +78,7 @@ def add_money(request):
             user_profile.account_balance += amount
             user_profile.save()
 
-            messages.success(request, f"Successfully added {amount} to your account balance.")
+            messages.success(request, f"Successfully added ${amount:.2f} to your account balance.")
             return redirect('view_plans')
         else:
             messages.error(request, "Amount cannot be empty.")

@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 from gtts import gTTS
 import os
 
-from text_to_speech.core.view_mixins import OwnerRequiredMixin
+from text_to_speech.core.owner_required_view_mixins import OwnerRequiredMixin
 from text_to_speech.profiles.models import Profile
 from text_to_speech.subscriptions.models import UserSubscription
 from text_to_speech.voices.forms import AudioFileForm

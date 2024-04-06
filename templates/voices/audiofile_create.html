@@ -2,37 +2,39 @@
 {% load static %}
 
 {% block main_content %}
+    
     <div class="login-register-div">
     <fieldset>
         <legend>Voice</legend>
         <div class="login-register-box">
-        <!-- Registration -->
-            {# Without JS #}
+{#             Without JS #}
 {#            {% if messages %}#}
 {#              <ul class="messages">#}
 {#                {% for message in messages %}#}
 {#                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
 {#                {% endfor %}#}
 {#              </ul>#}
-{#            {% endif %}#}
-            <form action="{% url "audiofile_create" %}" method="post">  
-{#                <fieldset>#}
-{#                    <legend>Voice</legend>#}
-
-                    {{ form.as_p }} 
-
-                <!-- Button to Create Profile -->
+{#            {% endif %}#}        
+            <form action="{% url "audiofile_create" %}" method="post">
+                    {{ form.as_p }}
                 <button type="submit" class="register">Generate</button>
-
-                    {% csrf_token %}  
-
-{#                </fieldset>#}
+                    {% csrf_token %}
             </form>
-
         </div>
         </fieldset>
     </div>
 
+{#    <div class="car-card">#}
+{#        <div class="container">#}
+{#            <h1>Voice</h1>#}
+{#            <form action="{% url "audiofile_create" %}" method="post">#}
+{#                    {{ form.as_p }}#}
+{#                <button type="submit" class="register">Generate</button>#}
+{#                    {% csrf_token %}#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+    
 {% endblock %}
 
 {% block home-page-text %}
