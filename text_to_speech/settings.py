@@ -239,7 +239,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'text_to_speech.wsgi.application'
 
-
+ENABLE_ORYX_BUILD = True
 # Database
 
 if DEBUG:
