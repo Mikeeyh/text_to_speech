@@ -12,28 +12,6 @@
         .container {
             text-align: center;
         }
-        
-    {#    .delete-button {#}
-    {#        width: 150px;#}
-    {#        height: 50px;#}
-    {#        cursor: pointer;#}
-    {#        border: none;#}
-    {#        border-radius: 10px;#}
-    {#        display: inline;#}
-    {#        align-items: center;#}
-    {#        justify-content: center;#}
-    {#        background-color: #1b2845;#}
-    {#        background-image: linear-gradient(315deg, #45a29e 0%, #0d324d 74%);#}
-    {#        background-size: 200% 100%;#}
-    {#        background-position: left;#}
-    {#        background-repeat: no-repeat;#}
-    {#        transition: 500ms;#}
-    {#        color: #da1a1a;#}
-    {#        font-family: "Lato", serif;#}
-    {#        font-size: 20px;#}
-    {#        margin-bottom: 5px;#}
-    {#        margin-top: 20px;#}
-    {#}#}
 
     </style>
 {% if audio_files %}
@@ -44,19 +22,8 @@
         <p>Total Audio Files: {{ total_audio_files }}</p>
     </div>
 
-{#<ul>#}
-{#  {% for audio_file in audio_files %}#}
-{#    #}
-{#      <p class="email"><strong>Title:</strong> {{ audio_file.title }}</p>#}
-{##}
-{#        <a href="{% url 'audiofile_detail' pk=audio_file.pk %}" class="remove" >#}
-{#            <button type="submit" class="register">Details</button>#}
-{#        </a>#}
-{#      #}
-{#  {% endfor %}#}
-{#</ul>#}
-    
 <div class="audio-grid">
+
   {% for audio_file in audio_files %}
     <div class="audio-file">
     
@@ -64,13 +31,19 @@
       <p class="email"><strong>Title:</strong> {{ audio_file.title }}</p>
     </div>
         
-      <a href="{% url 'audiofile_detail' pk=audio_file.pk %}" class="remove">
-        <div class="form-group-button-audio-list">
-          <button type="submit" class="register">Details</button>
-        </div>
-      </a>
-    </div>
+{#      <a href="{% url 'audiofile_detail' pk=audio_file.pk %}" class="remove"> #}
+{#        <div class="form-group-button-audio-list">#}
+{#          <button type="submit" class="register">Details</button>#}
+{#        </div>#}
+{#      </a>#}
+<div class="actionBtn">
+    <a href="{% url 'audiofile_detail' pk=audio_file.pk %}" class="register">Details</a>
+</div>
+
+
+
   {% endfor %}
+</div>
 </div>
     
 {% else %}
