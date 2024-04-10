@@ -31,20 +31,15 @@
       <p class="email"><strong>Title:</strong> {{ audio_file.title }}</p>
     </div>
         
-{#      <a href="{% url 'audiofile_detail' pk=audio_file.pk %}" class="remove"> #}
-{#        <div class="form-group-button-audio-list">#}
-{#          <button type="submit" class="register">Details</button>#}
-{#        </div>#}
-{#      </a>#}
 <div class="actionBtn">
     <a href="{% url 'audiofile_detail' pk=audio_file.pk %}" class="register">Details</a>
 </div>
-
+</div>
 
 
   {% endfor %}
 </div>
-</div>
+
     
 {% else %}
     <div class="container">

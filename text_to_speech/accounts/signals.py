@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from  text_to_speech.profiles.models import Profile
+from text_to_speech.accounts.utils import send_welcome_email
+from text_to_speech.profiles.models import Profile
 
 UserModel = get_user_model()
 
@@ -16,7 +17,7 @@ def user_created(sender, instance, created, **kwargs):
 
     # Eager save -> directly creates the profile and save it
     Profile.objects.create(user=instance)
-
+    send_welcome_email(instance.email)
     # Equals to: (But can run other code and do other stuff too because creating and saving is separated on two parts)
     # profile = Profile(user=instance)
     # profile.save()

@@ -5,9 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Text to Voice App</title>
-    <!-- Static Load -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
 </head>
   
 <body>
@@ -19,27 +17,19 @@
     {% endblock %}
 
     {% block home-page-text %}
+        
     <section class="centered-text">
-        <h2>At Voicelab, we're passionate about the power of voice technology to transform the way we interact with the world.</h2>
-        <p>Our platform is designed to empower individuals and businesses alike to harness the potential of voice-enabled solutions.</p>
-
-        <!-- Add more content as needed -->
-        
-        <h3>What We Offer:</h3>
-        <p>Voice Application Development: Whether you're looking to build a voice-powered app for your business or exploring new ways to engage your audience, our team of experts is here to bring your vision to life. From concept to deployment, we provide end-to-end development services tailored to your needs.</p>
-        
-        <!-- Add more content as needed -->
-        
-        <h3>Why Choose Voicelab:</h3>
-        <p>Expertise: With years of experience in voice technology, we have the knowledge and skills to deliver top-notch solutions that exceed expectations. Innovation: We stay ahead of the curve by keeping up with the latest trends and advancements in voice technology, ensuring that our clients always benefit from cutting-edge solutions.</p>
-        
-        <!-- Add more content as needed -->
-        
-        <h3>Get Started Today:</h3>
-        <p>Ready to explore the possibilities of voice technology? Contact us to schedule a consultation or learn more about how Voicelab can help you unlock the full potential of voice.</p>
+        <p>Welcome to Speechify, your ultimate solution for converting text into natural-sounding speech effortlessly! With Speechify, you can transform any written content into high-quality audio in just a few clicks. Whether you're a student, professional, or simply someone who prefers listening over reading, Text to Speechify is here to make your life easier.</p>
+        <p>Our platform offers a seamless experience, allowing you to convert text from various sources such as documents, web pages, emails, and more into clear and lifelike speech. Say goodbye to long hours of reading and hello to the convenience of listening on the go.</p>
+        <h3>Key Features:</h3>
+        <p>Easy Conversion: Simply paste your text or upload your documents, and let Text to Speechify do the rest. Our advanced technology ensures accurate conversion with natural intonation and pronunciation.</p>
+        <p>Customization Options: Tailor the speech output to your preferences with adjustable settings for voice type, speed, pitch, and more. Personalize your listening experience for optimal comprehension and enjoyment.</p>
+        <p>Multiple Languages and Voices: Choose from a diverse selection of languages and voices to suit your needs. Whether you're listening to a novel in English, a research paper in Spanish, or a business report in French, we've got you covered.</p>
+        <p>Download and Share: Download your audio files in various formats or share them directly with others. Seamlessly integrate the converted audio into your presentations, projects, or multimedia content.</p>
+        <p>Accessibility and Inclusivity: Empower individuals with visual impairments, learning disabilities, or language barriers to access information effortlessly. Promote inclusivity and accessibility in your educational, professional, or personal endeavors.</p>
+        <p>At Speechify, we're committed to providing you with the best-in-class text-to-speech solution that enhances your productivity, accessibility, and overall user experience. Join thousands of satisfied users and embark on a journey of effortless listening with Text to Speechify today!</p>
     </section>
-
-    <!-- Add the audio element for music -->
+        
     <audio src="{% static 'audio/song.mp3' %}" autoplay loop controls style="display: none;"></audio>
 
     {% endblock %}

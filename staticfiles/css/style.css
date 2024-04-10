@@ -183,8 +183,8 @@ form label {
 }
 
 h1 {
-    font-size: 18px; /* Adjust the font size as needed */
-    line-height: 1.5; /* Adjust the line height as needed */
+    font-size: 18px;
+    line-height: 1.5;
     margin-bottom: 20px;
     color: #ffffff;
 }
@@ -200,13 +200,14 @@ h3 {
     text-align: center;
     margin: 10px 0;
     padding: 0 20px;
-    color: #c97900; /* Adjust the color as needed */
+    color: #c97900;
 }
 
 .centered-text p {
-    font-size: 18px; /* Adjust the font size as needed */
-    line-height: 1.5; /* Adjust the line height as needed */
+    font-size: 18px;
+    line-height: 1.5;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 8px rgb(252, 6, 242);
 }
 
 .albumText h5 {
