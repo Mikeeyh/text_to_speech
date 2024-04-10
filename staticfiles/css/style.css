@@ -80,7 +80,6 @@ nav a:hover {
     width: 80%
 }
 
-
 .register, .delete {
     width: 150px;
     height: 50px;
@@ -130,7 +129,6 @@ form {
 form label {
     color: white;
 }
-
 
 .container-inline {
     display: block;
@@ -431,7 +429,6 @@ h4 {
 /*	box-shadow: 1px 2px 3px #888888;*/
 /*}*/
 
-
 .second-option {
 	text-align: center;
 	padding: 20px;
@@ -443,15 +440,13 @@ h4 {
 }
 
 .audio-file {
-  flex: 0 0 calc(16.666% - 20px); /* Adjust width based on number of columns */
+  flex: 0 0 calc(16.666% - 20px);
   margin: 10px;
   padding: 7px;
   border: 3px solid #753e7e;
   background-color: #000116;
   border-radius: 25px;
 }
-
-/* For profile details & edit page */
 
 .profile-details-page h2 {
     font-size: 20px;
@@ -528,35 +523,6 @@ h4 {
     font-weight: bold;
 }
 
-/*.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;*/
-/*}*/
-
-/*.page_404  img{ width:100%;}*/
-
-/*.four_zero_four_bg{*/
-
-/* background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);*/
-/*    height: 400px;*/
-/*    background-position: center;*/
-/* }*/
-
-
-/* .four_zero_four_bg h1{*/
-/* font-size:80px;*/
-/* }*/
-
-/*  .four_zero_four_bg h3{*/
-/*			 font-size:80px;*/
-/*			 }*/
-
-/*			 .link_404{*/
-/*	color: #fff!important;*/
-/*    padding: 10px 20px;*/
-/*    background: #39ac31;*/
-/*    margin: 20px 0;*/
-/*    display: inline-block;}*/
-/*	.content_box_404{ margin-top:-50px;}*/
-
 .social-icons {
     display: flex;
 }
@@ -575,7 +541,7 @@ h4 {
 
 .footer-content {
     display: flex;
-    align-items: center; /* Center items vertically */
+    align-items: center;
 }
 
 .plans-card {
@@ -585,7 +551,7 @@ h4 {
     border: 1px solid rgb(116, 62, 125);
     box-shadow: 0 8px 32px rgb(127, 0, 127);
     margin-top: 20px;
-    margin-bottom: 100px; /* addedddddddddddddddddd */
+    margin-bottom: 100px;
     padding: 50px;
     margin-left: 50px;
     /*background-position: right 35% bottom 45%;*/
@@ -608,8 +574,8 @@ h4 {
     box-sizing: border-box;
     border-radius: 30px;
     height: auto;
-    max-width: 400px; /* Set maximum width for responsiveness */
-    margin: 0 auto; /* Center the car-card horizontally */
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .image-wrap {
