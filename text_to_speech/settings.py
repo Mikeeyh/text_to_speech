@@ -242,15 +242,15 @@ WSGI_APPLICATION = 'text_to_speech.wsgi.application'
 # ENABLE_ORYX_BUILD = True
 # Database
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
-if not DEBUG:
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
