@@ -191,7 +191,7 @@ h1 {
 
 h3 {
     font-size: 30px;
-    color: #c97900;
+    color: #743e7d;
     letter-spacing: 0.2em;
     margin: 8px 0 0 58px;
 }
@@ -200,7 +200,7 @@ h3 {
     text-align: center;
     margin: 10px 0;
     padding: 0 20px;
-    color: #c97900;
+    /*color: #c97900;*/
 }
 
 .centered-text p {
@@ -390,7 +390,7 @@ textarea {
 .tips {
     width: 50%; /* Width of the tips section */
     padding-right: 35px; /* Add space between the tips and the video */
-    color: #c97900;
+    color: #743e7d;
 }
 
 h5 {
@@ -400,7 +400,7 @@ h5 {
 }
 
 h6 {
-    color: #c97900;
+    color: #743e7d;
     font-weight: bolder;
     font-size: 20px;
     margin-left: 270px;

@@ -191,7 +191,7 @@ h1 {
 
 h3 {
     font-size: 30px;
-    color: #c97900;
+    color: #743e7d;
     letter-spacing: 0.2em;
     margin: 8px 0 0 58px;
 }
@@ -417,19 +417,6 @@ h4 {
     display: flex;
     justify-content: center; /* Center the content horizontally */
 }
-
-/*.login-register-box, .second-option {*/
-/*	display: block;*/
-/*	width: 300px;*/
-/*	background-color: rgb(255, 255, 255);*/
-/*	border: 1px solid rgb(156, 152, 152);*/
-/*	padding: 40px;*/
-/*	margin-bottom: 15px;*/
-/*	border-radius: 3px;*/
-/*	border: 1px solid;*/
-/*	box-shadow: 1px 2px 3px #888888;*/
-/*}*/
-
 
 .second-option {
 	text-align: center;
