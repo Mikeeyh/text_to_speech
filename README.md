@@ -11,3 +11,7 @@ Text-to-Speech Conversion: Convert written text into natural-sounding speech.
 Multiple Languages: Support for multiple languages for both input text and speech output.
 Responsive Design: Ensure compatibility across various devices and screen sizes.
 User Authentication: Allow users to register, login, and manage their accounts securely.
+
+
+### Total Lines of Code
+This repository has approximately **30088** lines of code.
